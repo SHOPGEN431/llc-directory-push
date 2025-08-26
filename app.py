@@ -846,7 +846,8 @@ def llc_business_bank_account_guide():
                          meta_description=meta_description,
                          structured_data=get_structured_data("WebPage", title, meta_description))
 
+# Load data on startup
+load_llc_data()
+
 if __name__ == '__main__':
-    # Load data on startup
-    load_llc_data()
     app.run(debug=True, host='0.0.0.0', port=5000)
