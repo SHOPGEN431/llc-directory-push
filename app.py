@@ -504,14 +504,65 @@ def sitemap():
     sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
     sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     
-    # Add static pages
-    static_pages = ['', '/about', '/contact', '/privacy-policy', '/terms-conditions']
+    # Add static pages with high priority
+    static_pages = [
+        {'url': '', 'priority': '1.0', 'changefreq': 'daily'},
+        {'url': '/about', 'priority': '0.8', 'changefreq': 'monthly'},
+        {'url': '/contact', 'priority': '0.8', 'changefreq': 'monthly'},
+        {'url': '/privacy-policy', 'priority': '0.6', 'changefreq': 'yearly'},
+        {'url': '/terms-conditions', 'priority': '0.6', 'changefreq': 'yearly'}
+    ]
+    
     for page in static_pages:
-        sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}{page}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n'
+        sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}{page["url"]}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>{page["changefreq"]}</changefreq>\n    <priority>{page["priority"]}</priority>\n  </url>\n'
+    
+    # Add directory pages
+    directory_pages = [
+        {'url': '/cities', 'priority': '0.9', 'changefreq': 'weekly'},
+        {'url': '/all-locations', 'priority': '0.9', 'changefreq': 'weekly'}
+    ]
+    
+    for page in directory_pages:
+        sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}{page["url"]}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>{page["changefreq"]}</changefreq>\n    <priority>{page["priority"]}</priority>\n  </url>\n'
+    
+    # Add calculator pages
+    calculator_pages = [
+        {'url': '/calculators', 'priority': '0.8', 'changefreq': 'monthly'},
+        {'url': '/calculator/break-even', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/calculator/roi', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/calculator/equity-split', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/calculator/business-loan', 'priority': '0.7', 'changefreq': 'monthly'}
+    ]
+    
+    for page in calculator_pages:
+        sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}{page["url"]}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>{page["changefreq"]}</changefreq>\n    <priority>{page["priority"]}</priority>\n  </url>\n'
+    
+    # Add resource pages
+    resource_pages = [
+        {'url': '/resources', 'priority': '0.8', 'changefreq': 'monthly'},
+        {'url': '/business-structure-quiz', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/llc-cost-calculator', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/foreign-qualification-checklist', 'priority': '0.7', 'changefreq': 'monthly'}
+    ]
+    
+    for page in resource_pages:
+        sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}{page["url"]}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>{page["changefreq"]}</changefreq>\n    <priority>{page["priority"]}</priority>\n  </url>\n'
+    
+    # Add LLC guide pages
+    guide_pages = [
+        {'url': '/llc-formation-guide', 'priority': '0.8', 'changefreq': 'monthly'},
+        {'url': '/llc-operating-agreement-guide', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/llc-tax-guide', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/llc-compliance-guide', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/llc-business-bank-account-guide', 'priority': '0.7', 'changefreq': 'monthly'}
+    ]
+    
+    for page in guide_pages:
+        sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}{page["url"]}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>{page["changefreq"]}</changefreq>\n    <priority>{page["priority"]}</priority>\n  </url>\n'
     
     # Add state pages
     for state_slug in states_data.keys():
-        sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}/state/{state_slug}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n'
+        sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}/state/{state_slug}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n'
     
     # Add city pages if we have LLC data
     if llc_data is not None:
@@ -532,9 +583,19 @@ def sitemap():
                 city_slug = generate_seo_url(city)
                 sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}/city/{state_slug}/{city_slug}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n'
     
-    # Add business detail pages
+    # Add category pages (if any)
+    category_pages = [
+        {'url': '/category/llc-formation-services', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/category/business-services', 'priority': '0.7', 'changefreq': 'monthly'},
+        {'url': '/category/legal-services', 'priority': '0.7', 'changefreq': 'monthly'}
+    ]
+    
+    for page in category_pages:
+        sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}{page["url"]}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>{page["changefreq"]}</changefreq>\n    <priority>{page["priority"]}</priority>\n  </url>\n'
+    
+    # Add business detail pages (limited to first 1000 for performance)
     if llc_data is not None:
-        for idx in range(min(len(llc_data), 1000)):  # Limit to first 1000 businesses
+        for idx in range(min(len(llc_data), 1000)):
             sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}/business/{idx}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>\n'
     
     sitemap += '</urlset>'
