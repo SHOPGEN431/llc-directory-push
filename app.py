@@ -131,8 +131,8 @@ def load_llc_data(csv_file='LLC Data.csv'):
         llc_data = pd.read_csv(csv_path)
         print(f"Successfully loaded CSV from: {csv_path}")
         
-        # Clean and process data
-        llc_data = llc_data.fillna('')
+            # Clean and process data
+            llc_data = llc_data.fillna('')
         
         # Check if required columns exist
         required_columns = ['name', 'city', 'state']
@@ -151,25 +151,25 @@ def load_llc_data(csv_file='LLC Data.csv'):
             print(f"Created sample data with {len(llc_data)} records")
             return True
         
-        # Filter for business data (remove rows with empty business names)
-        llc_data = llc_data[llc_data['name'].notna() & (llc_data['name'] != '')]
-        print(f"Loaded {len(llc_data)} business records")
-        
-        # Debug: Show sample of city, postal_code, and state data
-        print("Sample city/postal_code/state data:")
-        if 'postal_code' in llc_data.columns:
-            sample_data = llc_data[['name', 'city', 'postal_code', 'state']].head(10)
-        else:
-            sample_data = llc_data[['name', 'city', 'state']].head(10)
-        print(sample_data)
-        
-        # Check for unique cities and states
-        print(f"Unique cities: {llc_data['city'].nunique()}")
-        print(f"Unique states: {llc_data['state'].nunique()}")
-        if 'postal_code' in llc_data.columns:
-            print(f"Unique postal codes: {llc_data['postal_code'].nunique()}")
-        
-        return True
+            # Filter for business data (remove rows with empty business names)
+            llc_data = llc_data[llc_data['name'].notna() & (llc_data['name'] != '')]
+            print(f"Loaded {len(llc_data)} business records")
+            
+            # Debug: Show sample of city, postal_code, and state data
+            print("Sample city/postal_code/state data:")
+            if 'postal_code' in llc_data.columns:
+                sample_data = llc_data[['name', 'city', 'postal_code', 'state']].head(10)
+            else:
+                sample_data = llc_data[['name', 'city', 'state']].head(10)
+            print(sample_data)
+            
+            # Check for unique cities and states
+            print(f"Unique cities: {llc_data['city'].nunique()}")
+            print(f"Unique states: {llc_data['state'].nunique()}")
+            if 'postal_code' in llc_data.columns:
+                print(f"Unique postal codes: {llc_data['postal_code'].nunique()}")
+            
+            return True
         
     except Exception as e:
         print(f"Error loading CSV data: {e}")
@@ -961,8 +961,8 @@ def llc_business_bank_account_guide():
                          meta_description=meta_description,
                          structured_data=get_structured_data("WebPage", title, meta_description))
 
-# Load data on startup
-load_llc_data()
+    # Load data on startup
+    load_llc_data()
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
