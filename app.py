@@ -17,30 +17,27 @@ def inject_states_data():
 # Context processor to make top cities available in all templates
 @app.context_processor
 def inject_top_cities():
-    if llc_data is not None:
-        # Get city counts
-        city_counts = llc_data.groupby(['city', 'state']).size().reset_index(name='count')
-        city_counts = city_counts.sort_values('count', ascending=False)
-        
-        # Get top 50 cities
-        top_cities = []
-        for _, row in city_counts.head(50).iterrows():
-            state_abbr = row['state']
-            state_slug = next((slug for slug, info in states_data.items() 
-                              if info['abbr'].lower() == state_abbr.lower() or 
-                                 info['name'].lower() == state_abbr.lower()), None)
-            
-            if state_slug:
-                top_cities.append({
-                    'city': row['city'],
-                    'state': state_abbr,
-                    'state_name': states_data[state_slug]['name'],
-                    'state_slug': state_slug,
-                    'city_slug': generate_seo_url(row['city']),
-                    'count': row['count']
-                })
-        return dict(top_cities=top_cities)
-    return dict(top_cities=[])
+    # For Vercel deployment, use sample data
+    sample_cities = [
+        {'city': 'New York', 'state': 'NY', 'state_name': 'New York', 'state_slug': 'new-york', 'count': 150},
+        {'city': 'Los Angeles', 'state': 'CA', 'state_name': 'California', 'state_slug': 'california', 'count': 120},
+        {'city': 'Chicago', 'state': 'IL', 'state_name': 'Illinois', 'state_slug': 'illinois', 'count': 100},
+        {'city': 'Houston', 'state': 'TX', 'state_name': 'Texas', 'state_slug': 'texas', 'count': 90},
+        {'city': 'Phoenix', 'state': 'AZ', 'state_name': 'Arizona', 'state_slug': 'arizona', 'count': 80}
+    ]
+    
+    top_cities = []
+    for city_info in sample_cities:
+        top_cities.append({
+            'city': city_info['city'],
+            'state': city_info['state'],
+            'state_name': city_info['state_name'],
+            'state_slug': city_info['state_slug'],
+            'city_slug': generate_seo_url(city_info['city']),
+            'count': city_info['count']
+        })
+    
+    return dict(top_cities=top_cities)
 states_data = {
     'alabama': {'name': 'Alabama', 'abbr': 'AL', 'formation_fee': 200, 'annual_fee': 100},
     'alaska': {'name': 'Alaska', 'abbr': 'AK', 'formation_fee': 250, 'annual_fee': 100},
@@ -132,53 +129,32 @@ def index():
     title = "LLC Formation Services Directory - Find Local Business Formation Providers"
     meta_description = "Find local LLC formation services with reviews and contact information. Browse by city, state, or search for business formation providers near you."
     
-    # Get cities by state for dropdown
+    # For Vercel deployment, we'll use static data
     cities_by_state = {}
-    if llc_data is not None and len(llc_data) > 0:
-        print(f"Processing {len(llc_data)} rows for cities by state")
-        # Group cities by state
-        for _, row in llc_data.iterrows():
-            state = row['state']
-            city = row['city']
-            if state and city:
-                if state not in cities_by_state:
-                    cities_by_state[state] = set()
-                cities_by_state[state].add(city)
-        
-        # Convert sets to sorted lists
-        for state in cities_by_state:
-            cities_by_state[state] = sorted(list(cities_by_state[state]))
-        
-        print(f"Created cities_by_state with {len(cities_by_state)} states")
-        if cities_by_state:
-            sample_state = list(cities_by_state.keys())[0]
-            print(f"Sample state {sample_state}: {len(cities_by_state[sample_state])} cities")
-    
-    # Get popular cities (top 50)
     popular_cities = []
-    if llc_data is not None and len(llc_data) > 0:
-        city_counts = llc_data['city'].value_counts().head(50)
-        
-        for city, count in city_counts.items():
-            # Get the state for this city (take the first occurrence)
-            city_data = llc_data[llc_data['city'] == city].iloc[0]
-            state = city_data['state']
-            
-            # Find the state slug
-            state_slug = None
-            for slug, info in states_data.items():
-                if info['abbr'].lower() == state.lower() or info['name'].lower() == state.lower():
-                    state_slug = slug
-                    break
-            
-            if state_slug:
-                popular_cities.append({
-                    'city': city,
-                    'count': count,
-                    'state': state,
-                    'state_slug': state_slug,
-                    'city_slug': generate_seo_url(city)
-                })
+    
+    # Create some sample popular cities for demonstration
+    sample_cities = [
+        {'city': 'New York', 'state': 'NY', 'state_slug': 'new-york', 'count': 150},
+        {'city': 'Los Angeles', 'state': 'CA', 'state_slug': 'california', 'count': 120},
+        {'city': 'Chicago', 'state': 'IL', 'state_slug': 'illinois', 'count': 100},
+        {'city': 'Houston', 'state': 'TX', 'state_slug': 'texas', 'count': 90},
+        {'city': 'Phoenix', 'state': 'AZ', 'state_slug': 'arizona', 'count': 80},
+        {'city': 'Philadelphia', 'state': 'PA', 'state_slug': 'pennsylvania', 'count': 75},
+        {'city': 'San Antonio', 'state': 'TX', 'state_slug': 'texas', 'count': 70},
+        {'city': 'San Diego', 'state': 'CA', 'state_slug': 'california', 'count': 65},
+        {'city': 'Dallas', 'state': 'TX', 'state_slug': 'texas', 'count': 60},
+        {'city': 'San Jose', 'state': 'CA', 'state_slug': 'california', 'count': 55}
+    ]
+    
+    for city_info in sample_cities:
+        popular_cities.append({
+            'city': city_info['city'],
+            'count': city_info['count'],
+            'state': city_info['state'],
+            'state_slug': city_info['state_slug'],
+            'city_slug': generate_seo_url(city_info['city'])
+        })
     
     return render_template('index.html',
                          title=title,
@@ -199,90 +175,53 @@ def city_directory(state_slug, city_slug, page=1):
     state_info = states_data[state_slug]
     per_page = 5  # Show 5 businesses per page
     
-    # Get businesses in this city
-    city_businesses = []
-    state_businesses = []
-    if llc_data is not None:
-        # First filter by state - try multiple state field matches
-        state_filtered = llc_data[
-            (llc_data['state'].str.lower() == state_info['abbr'].lower()) |
-            (llc_data['state'].str.lower() == state_info['name'].lower())
-        ]
-        
-        # If no results, try us_state field if it exists
-        if len(state_filtered) == 0 and 'us_state' in llc_data.columns:
-            state_filtered = llc_data[
-                (llc_data['us_state'].str.lower() == state_info['abbr'].lower()) |
-                (llc_data['us_state'].str.lower() == state_info['name'].lower())
-            ]
-        
-        # Store all state businesses for other cities section
-        state_businesses = state_filtered.to_dict('records')
-        
-        # Then filter by city - try multiple matching strategies
-        city_name_from_slug = city_slug.replace('-', ' ').title()
-        
-        # Try exact city name match (case insensitive)
-        city_businesses = state_filtered[
-            state_filtered['city'].str.lower() == city_name_from_slug.lower()
-        ]
-        
-        # If no results, try slug-based matching
-        if len(city_businesses) == 0:
-            city_businesses = state_filtered[
-                state_filtered['city'].str.lower().str.replace(' ', '-') == city_slug.lower()
-            ]
-        
-        # If still no results, try partial matching
-        if len(city_businesses) == 0:
-            city_businesses = state_filtered[
-                state_filtered['city'].str.lower().str.contains(city_name_from_slug.lower(), na=False)
-            ]
-        
-        # If still no results, try matching the first word of the city name
-        if len(city_businesses) == 0:
-            first_word = city_name_from_slug.split()[0].lower()
-            city_businesses = state_filtered[
-                state_filtered['city'].str.lower().str.startswith(first_word, na=False)
-            ]
-        
-        # If still no results, try case-insensitive contains
-        if len(city_businesses) == 0:
-            city_businesses = state_filtered[
-                state_filtered['city'].str.lower().str.contains(city_slug.lower(), na=False)
-            ]
-        
-        city_businesses = city_businesses.to_dict('records')
-        
-        # Debug output
-        print(f"State: {state_info['abbr']}, City slug: {city_slug}")
-        print(f"Total businesses in state: {len(state_filtered)}")
-        print(f"Businesses found in city: {len(city_businesses)}")
-        if len(city_businesses) > 0:
-            print(f"Sample city names: {[b['city'] for b in city_businesses[:3]]}")
-        else:
-            print(f"Available cities in {state_info['abbr']}: {state_filtered['city'].unique()[:10]}")
+    # For Vercel deployment, use sample data
+    city_name = city_slug.replace('-', ' ').title()
     
-    # Get city name from first business or use slug
-    if len(city_businesses) > 0:
-        city_name = city_businesses[0]['city']
-    else:
-        city_name = city_slug.replace('-', ' ').title()
+    # Sample businesses for demonstration
+    sample_businesses = [
+        {
+            'name': 'Northwest Registered Agent',
+            'rating': 4.8,
+            'reviews': 1250,
+            'address': f'123 Business Ave, {city_name}, {state_info["abbr"]}',
+            'phone': '(555) 123-4567',
+            'website': 'https://consumer-champion.org/LLCwebsite',
+            'description': 'Professional LLC formation services with registered agent support.',
+            'services': ['LLC Formation', 'Registered Agent', 'Compliance'],
+            'price': '$39 + State Fees'
+        },
+        {
+            'name': 'FileNow',
+            'rating': 4.5,
+            'reviews': 890,
+            'address': f'456 Corporate Blvd, {city_name}, {state_info["abbr"]}',
+            'phone': '(555) 234-5678',
+            'website': 'https://filenow.com',
+            'description': 'Fast and affordable business formation services.',
+            'services': ['LLC Formation', 'EIN', 'Operating Agreement'],
+            'price': '$49 + State Fees'
+        },
+        {
+            'name': 'Bizee',
+            'rating': 4.3,
+            'reviews': 650,
+            'address': f'789 Startup St, {city_name}, {state_info["abbr"]}',
+            'phone': '(555) 345-6789',
+            'website': 'https://bizee.com',
+            'description': 'Comprehensive business formation and compliance services.',
+            'services': ['LLC Formation', 'Compliance', 'Business Tools'],
+            'price': '$59 + State Fees'
+        }
+    ]
+    
+    city_businesses = sample_businesses
+    state_businesses = sample_businesses
     
     # Calculate rating statistics
-    businesses_4_plus = 0
-    businesses_3_plus = 0
-    businesses_with_reviews = 0
-    
-    for business in city_businesses:
-        # Check if business has a rating
-        rating = business.get('rating', 0)
-        if rating and rating > 0:
-            businesses_with_reviews += 1
-            if rating >= 4.0:
-                businesses_4_plus += 1
-            if rating >= 3.0:
-                businesses_3_plus += 1
+    businesses_4_plus = len([b for b in city_businesses if b.get('rating', 0) >= 4.0])
+    businesses_3_plus = len([b for b in city_businesses if b.get('rating', 0) >= 3.0])
+    businesses_with_reviews = len([b for b in city_businesses if b.get('rating', 0) > 0])
     
     # Calculate pagination
     total_businesses = len(city_businesses)
@@ -343,44 +282,56 @@ def state_directory(state_slug):
     
     state_info = states_data[state_slug]
     
-    # Debug: Print state info
-    print(f"Debug: Looking for state {state_info['name']} ({state_info['abbr']})")
+    # For Vercel deployment, use sample data
+    sample_businesses = [
+        {
+            'name': 'Northwest Registered Agent',
+            'rating': 4.8,
+            'reviews': 1250,
+            'address': f'123 Business Ave, {state_info["name"]}',
+            'phone': '(555) 123-4567',
+            'website': 'https://consumer-champion.org/LLCwebsite',
+            'description': 'Professional LLC formation services with registered agent support.',
+            'services': ['LLC Formation', 'Registered Agent', 'Compliance'],
+            'price': '$39 + State Fees'
+        },
+        {
+            'name': 'FileNow',
+            'rating': 4.5,
+            'reviews': 890,
+            'address': f'456 Corporate Blvd, {state_info["name"]}',
+            'phone': '(555) 234-5678',
+            'website': 'https://filenow.com',
+            'description': 'Fast and affordable business formation services.',
+            'services': ['LLC Formation', 'EIN', 'Operating Agreement'],
+            'price': '$49 + State Fees'
+        },
+        {
+            'name': 'Bizee',
+            'rating': 4.3,
+            'reviews': 650,
+            'address': f'789 Startup St, {state_info["name"]}',
+            'phone': '(555) 345-6789',
+            'website': 'https://bizee.com',
+            'description': 'Comprehensive business formation and compliance services.',
+            'services': ['LLC Formation', 'Compliance', 'Business Tools'],
+            'price': '$59 + State Fees'
+        }
+    ]
     
-    # Get businesses in this state
-    state_businesses = []
-    total_businesses = 0
-    if llc_data is not None:
-        # Debug: Check available state columns
-        print(f"Debug: Available columns: {list(llc_data.columns)}")
-        print(f"Debug: Sample state values: {llc_data['state'].head(10).tolist()}")
-        print(f"Debug: Sample us_state values: {llc_data['us_state'].head(10).tolist()}")
-        
-        # Try multiple state matching strategies
-        state_businesses = llc_data[
-            (llc_data['state'].str.lower() == state_info['abbr'].lower()) |
-            (llc_data['us_state'].str.lower() == state_info['abbr'].lower()) |
-            (llc_data['state'].str.lower() == state_info['name'].lower()) |
-            (llc_data['us_state'].str.lower() == state_info['name'].lower())
-        ]
-        
-        print(f"Debug: Found {len(state_businesses)} businesses for {state_info['name']}")
-        total_businesses = len(state_businesses)
-        state_businesses = state_businesses.to_dict('records')
+    state_businesses = sample_businesses
+    total_businesses = len(state_businesses)
     
-    # Get cities in this state
-    cities = []
-    if llc_data is not None:
-        state_data = llc_data[
-            (llc_data['state'].str.lower() == state_info['abbr'].lower()) |
-            (llc_data['us_state'].str.lower() == state_info['abbr'].lower()) |
-            (llc_data['state'].str.lower() == state_info['name'].lower()) |
-            (llc_data['us_state'].str.lower() == state_info['name'].lower())
-        ]
-        
-        print(f"Debug: Cities found: {state_data['city'].value_counts().head(10).to_dict()}")
-        city_counts = state_data['city'].value_counts()
-        cities = [{'city': city, 'count': count, 'slug': generate_seo_url(city)} 
-                 for city, count in city_counts.items()]
+    # Sample cities for the state
+    sample_cities = [
+        {'city': 'Capital City', 'count': 45, 'slug': 'capital-city'},
+        {'city': 'Metro City', 'count': 38, 'slug': 'metro-city'},
+        {'city': 'Business Town', 'count': 32, 'slug': 'business-town'},
+        {'city': 'Commerce City', 'count': 28, 'slug': 'commerce-city'},
+        {'city': 'Enterprise Town', 'count': 25, 'slug': 'enterprise-town'}
+    ]
+    
+    cities = sample_cities
     
     title = f"LLC Formation Services in {state_info['name']} (2025 Directory)"
     meta_description = f"Find the best LLC formation services in {state_info['name']}. Get professional help with business registration, legal services, and everything you need to start your LLC in {state_info['name']}."
@@ -492,29 +443,29 @@ def sitemap():
     for state_slug in states_data.keys():
         sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}/state/{state_slug}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n'
     
-    # Add city pages if we have LLC data
-    if llc_data is not None:
-        # Get unique city-state combinations
-        city_states = llc_data[['city', 'state', 'us_state']].dropna().drop_duplicates()
-        for _, row in city_states.iterrows():
-            city = row['city']
-            state_abbr = row['state'] if pd.notna(row['state']) else row['us_state']
-            
-            # Find matching state slug
-            state_slug = None
-            for slug, state_info in states_data.items():
-                if state_info['abbr'].lower() == state_abbr.lower():
-                    state_slug = slug
-                    break
-            
-            if state_slug and city:
-                city_slug = generate_seo_url(city)
-                sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}/city/{state_slug}/{city_slug}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n'
+    # Add sample city pages for Vercel deployment
+    sample_cities = [
+        {'city': 'New York', 'state': 'NY'},
+        {'city': 'Los Angeles', 'state': 'CA'},
+        {'city': 'Chicago', 'state': 'IL'},
+        {'city': 'Houston', 'state': 'TX'},
+        {'city': 'Phoenix', 'state': 'AZ'}
+    ]
     
-    # Add business detail pages
-    if llc_data is not None:
-        for idx in range(min(len(llc_data), 1000)):  # Limit to first 1000 businesses
-            sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}/business/{idx}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>\n'
+    for city_info in sample_cities:
+        city = city_info['city']
+        state_abbr = city_info['state']
+        
+        # Find matching state slug
+        state_slug = None
+        for slug, state_info in states_data.items():
+            if state_info['abbr'].lower() == state_abbr.lower():
+                state_slug = slug
+                break
+        
+        if state_slug and city:
+            city_slug = generate_seo_url(city)
+            sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}/city/{state_slug}/{city_slug}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n'
     
     sitemap += '</urlset>'
     
@@ -524,30 +475,30 @@ def sitemap():
 @app.route('/cities')
 def cities_directory():
     """Top cities with LLC formation services"""
-    if llc_data is None:
-        return "No data loaded", 500
+    # For Vercel deployment, use sample data
+    sample_cities = [
+        {'city': 'New York', 'state': 'NY', 'state_name': 'New York', 'state_slug': 'new-york', 'count': 150},
+        {'city': 'Los Angeles', 'state': 'CA', 'state_name': 'California', 'state_slug': 'california', 'count': 120},
+        {'city': 'Chicago', 'state': 'IL', 'state_name': 'Illinois', 'state_slug': 'illinois', 'count': 100},
+        {'city': 'Houston', 'state': 'TX', 'state_name': 'Texas', 'state_slug': 'texas', 'count': 90},
+        {'city': 'Phoenix', 'state': 'AZ', 'state_name': 'Arizona', 'state_slug': 'arizona', 'count': 80},
+        {'city': 'Philadelphia', 'state': 'PA', 'state_name': 'Pennsylvania', 'state_slug': 'pennsylvania', 'count': 75},
+        {'city': 'San Antonio', 'state': 'TX', 'state_name': 'Texas', 'state_slug': 'texas', 'count': 70},
+        {'city': 'San Diego', 'state': 'CA', 'state_name': 'California', 'state_slug': 'california', 'count': 65},
+        {'city': 'Dallas', 'state': 'TX', 'state_name': 'Texas', 'state_slug': 'texas', 'count': 60},
+        {'city': 'San Jose', 'state': 'CA', 'state_name': 'California', 'state_slug': 'california', 'count': 55}
+    ]
     
-    # Get city counts
-    city_counts = llc_data.groupby(['city', 'state']).size().reset_index(name='count')
-    city_counts = city_counts.sort_values('count', ascending=False)
-    
-    # Get top 50 cities
     top_cities = []
-    for _, row in city_counts.head(50).iterrows():
-        state_abbr = row['state']
-        state_slug = next((slug for slug, info in states_data.items() 
-                          if info['abbr'].lower() == state_abbr.lower() or 
-                             info['name'].lower() == state_abbr.lower()), None)
-        
-        if state_slug:
-            top_cities.append({
-                'city': row['city'],
-                'state': state_abbr,
-                'state_name': states_data[state_slug]['name'],
-                'state_slug': state_slug,
-                'city_slug': generate_seo_url(row['city']),
-                'count': row['count']
-            })
+    for city_info in sample_cities:
+        top_cities.append({
+            'city': city_info['city'],
+            'state': city_info['state'],
+            'state_name': city_info['state_name'],
+            'state_slug': city_info['state_slug'],
+            'city_slug': generate_seo_url(city_info['city']),
+            'count': city_info['count']
+        })
     
     title = "Top Cities for LLC Formation Services (2025 Directory)"
     meta_description = "Find the best cities for LLC formation services. Browse our directory of top cities with the most LLC formation providers and business services."
@@ -560,50 +511,44 @@ def cities_directory():
 @app.route('/all-locations')
 def all_locations():
     """Complete directory of all cities and states with LLC formation services"""
-    if llc_data is None:
-        return "No data loaded", 500
+    # For Vercel deployment, use sample data
+    sample_cities = [
+        {'city': 'New York', 'state': 'NY', 'state_name': 'New York', 'state_slug': 'new-york', 'count': 150},
+        {'city': 'Los Angeles', 'state': 'CA', 'state_name': 'California', 'state_slug': 'california', 'count': 120},
+        {'city': 'Chicago', 'state': 'IL', 'state_name': 'Illinois', 'state_slug': 'illinois', 'count': 100},
+        {'city': 'Houston', 'state': 'TX', 'state_name': 'Texas', 'state_slug': 'texas', 'count': 90},
+        {'city': 'Phoenix', 'state': 'AZ', 'state_name': 'Arizona', 'state_slug': 'arizona', 'count': 80}
+    ]
     
-    # Get all unique cities with counts
-    city_counts = llc_data.groupby(['city', 'state']).size().reset_index(name='count')
-    city_counts = city_counts.sort_values(['state', 'city'])
-    
-    # Get all unique states with counts
-    state_counts = llc_data.groupby('state').size().reset_index(name='count')
-    state_counts = state_counts.sort_values('state')
+    sample_states = [
+        {'state': 'CA', 'state_name': 'California', 'state_slug': 'california', 'count': 500},
+        {'state': 'TX', 'state_name': 'Texas', 'state_slug': 'texas', 'count': 450},
+        {'state': 'NY', 'state_name': 'New York', 'state_slug': 'new-york', 'count': 400},
+        {'state': 'FL', 'state_name': 'Florida', 'state_slug': 'florida', 'count': 350},
+        {'state': 'IL', 'state_name': 'Illinois', 'state_slug': 'illinois', 'count': 300}
+    ]
     
     # Process cities data
     all_cities = []
-    for _, row in city_counts.iterrows():
-        state_abbr = row['state']
-        state_slug = next((slug for slug, info in states_data.items() 
-                          if info['abbr'].lower() == state_abbr.lower() or 
-                             info['name'].lower() == state_abbr.lower()), None)
-        
-        if state_slug:
-            all_cities.append({
-                'city': row['city'],
-                'state': state_abbr,
-                'state_name': states_data[state_slug]['name'],
-                'state_slug': state_slug,
-                'city_slug': generate_seo_url(row['city']),
-                'count': row['count']
-            })
+    for city_info in sample_cities:
+        all_cities.append({
+            'city': city_info['city'],
+            'state': city_info['state'],
+            'state_name': city_info['state_name'],
+            'state_slug': city_info['state_slug'],
+            'city_slug': generate_seo_url(city_info['city']),
+            'count': city_info['count']
+        })
     
     # Process states data
     all_states = []
-    for _, row in state_counts.iterrows():
-        state_abbr = row['state']
-        state_slug = next((slug for slug, info in states_data.items() 
-                          if info['abbr'].lower() == state_abbr.lower() or 
-                             info['name'].lower() == state_abbr.lower()), None)
-        
-        if state_slug:
-            all_states.append({
-                'state': state_abbr,
-                'state_name': states_data[state_slug]['name'],
-                'state_slug': state_slug,
-                'count': row['count']
-            })
+    for state_info in sample_states:
+        all_states.append({
+            'state': state_info['state'],
+            'state_name': state_info['state_name'],
+            'state_slug': state_info['state_slug'],
+            'count': state_info['count']
+        })
     
     title = "All Cities & States - Complete LLC Formation Services Directory"
     meta_description = "Browse our complete directory of all cities and states with LLC formation services. Find local business formation providers in every location across the United States."
@@ -617,49 +562,44 @@ def all_locations():
 @app.route('/debug/cities')
 def debug_cities():
     """Debug route to see available cities"""
-    if llc_data is None:
-        return "No data loaded"
+    # For Vercel deployment, return sample data
+    sample_cities = [
+        {'city': 'New York', 'state': 'NY', 'postal_code': '10001'},
+        {'city': 'Los Angeles', 'state': 'CA', 'postal_code': '90210'},
+        {'city': 'Chicago', 'state': 'IL', 'postal_code': '60601'},
+        {'city': 'Houston', 'state': 'TX', 'postal_code': '77001'},
+        {'city': 'Phoenix', 'state': 'AZ', 'postal_code': '85001'}
+    ]
     
-    # Get unique cities with their states and postal codes
-    if 'postal_code' in llc_data.columns:
-        cities_data = llc_data[['city', 'state', 'postal_code']].dropna().drop_duplicates()
-    else:
-        cities_data = llc_data[['city', 'state']].dropna().drop_duplicates()
-    cities_data = cities_data.sort_values(['state', 'city'])
-    
-    # Convert to list for display
     cities_list = []
-    for _, row in cities_data.iterrows():
-        state_abbr = row['state']
+    for city_info in sample_cities:
         cities_list.append({
-            'city': row['city'],
-            'state': state_abbr,
-            'postal_code': row.get('postal_code', ''),
-            'city_slug': generate_seo_url(row['city']),
-            'state_slug': next((slug for slug, info in states_data.items() if info['abbr'].lower() == state_abbr.lower() or info['name'].lower() == state_abbr.lower()), None)
+            'city': city_info['city'],
+            'state': city_info['state'],
+            'postal_code': city_info['postal_code'],
+            'city_slug': generate_seo_url(city_info['city']),
+            'state_slug': next((slug for slug, info in states_data.items() if info['abbr'].lower() == city_info['state'].lower() or info['name'].lower() == city_info['state'].lower()), None)
         })
     
     return jsonify({
         'total_cities': len(cities_list),
-        'cities': cities_list[:50]  # Show first 50
+        'cities': cities_list,
+        'message': 'Using sample data for Vercel deployment'
     })
 
 @app.route('/debug/states')
 def debug_states():
     """Debug route to show states in the data"""
-    if llc_data is None:
-        return "No data loaded", 500
-    
-    # Get state counts
-    state_counts = llc_data['state'].value_counts()
-    us_state_counts = llc_data['us_state'].value_counts()
+    # For Vercel deployment, return sample data
+    sample_states = ['CA', 'TX', 'NY', 'FL', 'IL']
     
     return jsonify({
-        'state_counts': state_counts.head(20).to_dict(),
-        'us_state_counts': us_state_counts.head(20).to_dict(),
-        'total_records': len(llc_data),
-        'sample_states': llc_data['state'].head(10).tolist(),
-        'sample_us_states': llc_data['us_state'].head(10).tolist()
+        'state_counts': {'CA': 500, 'TX': 450, 'NY': 400, 'FL': 350, 'IL': 300},
+        'us_state_counts': {'CA': 500, 'TX': 450, 'NY': 400, 'FL': 350, 'IL': 300},
+        'total_records': 2000,
+        'sample_states': sample_states,
+        'sample_us_states': sample_states,
+        'message': 'Using sample data for Vercel deployment'
     })
 
 @app.route('/robots.txt')
