@@ -750,3 +750,1007 @@ function exportResults() {
 
 
 
+
+                                <table class="table table-sm">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>Option</th>
+
+                                            <th>Monthly Payment</th>
+
+                                            <th>Total Interest</th>
+
+                                            <th>Total Cost</th>
+
+                                            <th>Best For</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody id="comparisonTable">
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- How It Works -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="h3 fw-bold mb-3">How Loan Calculations Work</h2>
+
+            <p class="text-muted mb-0">Understand the formula behind loan payment calculations</p>
+
+        </div>
+
+        
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+
+                            <i class="fas fa-calculator fa-2x text-primary"></i>
+
+                        </div>
+
+                        <h5 class="fw-bold mb-3">Payment Formula</h5>
+
+                        <p class="text-muted mb-0">P = L[c(1 + c)^n]/[(1 + c)^n - 1] where P=payment, L=loan amount, c=monthly rate, n=total payments</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+
+                            <i class="fas fa-chart-line fa-2x text-success"></i>
+
+                        </div>
+
+                        <h5 class="fw-bold mb-3">Amortization</h5>
+
+                        <p class="text-muted mb-0">Early payments are mostly interest, later payments are mostly principal.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+
+                            <i class="fas fa-lightbulb fa-2x text-warning"></i>
+
+                        </div>
+
+                        <h5 class="fw-bold mb-3">Loan Insights</h5>
+
+                        <p class="text-muted mb-0">Use this calculator to compare loan options and understand total borrowing costs.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- Call to Action -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h3 class="fw-bold mb-4">Ready to Form Your LLC?</h3>
+
+            <p class="lead mb-4">Now that you know your loan costs, find the perfect LLC formation service for your business.</p>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+                <a href="/cities" class="btn btn-primary btn-lg">
+
+                    <i class="fas fa-city me-2"></i>Find Local Services
+
+                </a>
+
+                <a href="/calculator/break-even" class="btn btn-outline-primary btn-lg">
+
+                    <i class="fas fa-calculator me-2"></i>Break-Even Calculator
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+document.getElementById('loanForm').addEventListener('submit', function(e) {
+
+    e.preventDefault();
+
+    calculateLoan();
+
+});
+
+
+
+function calculateLoan() {
+
+    // Get form values
+
+    const loanAmount = parseFloat(document.getElementById('loanAmount').value) || 0;
+
+    const annualRate = parseFloat(document.getElementById('interestRate').value) || 0;
+
+    const loanTerm = parseFloat(document.getElementById('loanTerm').value) || 1;
+
+    const paymentFrequency = parseInt(document.getElementById('paymentFrequency').value) || 12;
+
+    const originationFee = parseFloat(document.getElementById('originationFee').value) || 0;
+
+    const monthlyFees = parseFloat(document.getElementById('monthlyFees').value) || 0;
+
+    
+
+    // Calculate monthly rate and total payments
+
+    const monthlyRate = annualRate / 100 / 12;
+
+    const totalPayments = loanTerm * 12;
+
+    
+
+    // Calculate monthly payment using loan payment formula
+
+    const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+
+    
+
+    // Calculate totals
+
+    const totalPayment = monthlyPayment * totalPayments;
+
+    const totalInterest = totalPayment - loanAmount;
+
+    const totalFees = (monthlyFees * totalPayments) + originationFee;
+
+    const totalCost = totalPayment + totalFees;
+
+    
+
+    // Calculate APR (simplified)
+
+    const apr = annualRate + (totalFees / loanAmount / loanTerm * 100);
+
+    
+
+    // Display results
+
+    document.getElementById('monthlyPayment').textContent = '$' + monthlyPayment.toFixed(2);
+
+    document.getElementById('totalInterest').textContent = '$' + totalInterest.toFixed(2);
+
+    document.getElementById('totalPayments').textContent = '$' + totalCost.toFixed(2);
+
+    document.getElementById('loanTermDisplay').textContent = loanTerm + ' year' + (loanTerm !== 1 ? 's' : '');
+
+    document.getElementById('aprDisplay').textContent = apr.toFixed(2) + '%';
+
+    
+
+    // Payment breakdown
+
+    document.getElementById('principalPayment').textContent = '$' + (loanAmount / totalPayments).toFixed(2);
+
+    document.getElementById('interestPayment').textContent = '$' + (totalInterest / totalPayments).toFixed(2);
+
+    document.getElementById('feesPayment').textContent = '$' + (totalFees / totalPayments).toFixed(2);
+
+    
+
+    // Show results
+
+    document.getElementById('results').style.display = 'block';
+
+    document.getElementById('noResults').style.display = 'none';
+
+    
+
+    // Generate amortization schedule
+
+    generateAmortizationSchedule(loanAmount, monthlyRate, totalPayments, monthlyPayment, monthlyFees);
+
+}
+
+
+
+function generateAmortizationSchedule(principal, monthlyRate, totalPayments, monthlyPayment, monthlyFees) {
+
+    const tableBody = document.getElementById('amortizationBody');
+
+    tableBody.innerHTML = '';
+
+    
+
+    let remainingBalance = principal;
+
+    
+
+    for (let i = 1; i <= Math.min(totalPayments, 12); i++) { // Show first 12 payments
+
+        const interestPayment = remainingBalance * monthlyRate;
+
+        const principalPayment = monthlyPayment - interestPayment;
+
+        remainingBalance -= principalPayment;
+
+        
+
+        const row = tableBody.insertRow();
+
+        row.innerHTML = `
+
+            <td>${i}</td>
+
+            <td>$${monthlyPayment.toFixed(2)}</td>
+
+            <td>$${principalPayment.toFixed(2)}</td>
+
+            <td>$${interestPayment.toFixed(2)}</td>
+
+            <td>$${monthlyFees.toFixed(2)}</td>
+
+            <td>$${Math.max(0, remainingBalance).toFixed(2)}</td>
+
+        `;
+
+    }
+
+    
+
+    if (totalPayments > 12) {
+
+        const row = tableBody.insertRow();
+
+        row.innerHTML = `
+
+            <td colspan="6" class="text-center text-muted">
+
+                <em>... and ${totalPayments - 12} more payments</em>
+
+            </td>
+
+        `;
+
+    }
+
+}
+
+
+
+function compareLoans() {
+
+    const loans = [
+
+        {
+
+            name: 'A',
+
+            amount: parseFloat(document.getElementById('loanA').value) || 0,
+
+            rate: parseFloat(document.getElementById('rateA').value) || 0,
+
+            term: parseFloat(document.getElementById('termA').value) || 1
+
+        },
+
+        {
+
+            name: 'B',
+
+            amount: parseFloat(document.getElementById('loanB').value) || 0,
+
+            rate: parseFloat(document.getElementById('rateB').value) || 0,
+
+            term: parseFloat(document.getElementById('termB').value) || 1
+
+        },
+
+        {
+
+            name: 'C',
+
+            amount: parseFloat(document.getElementById('loanC').value) || 0,
+
+            rate: parseFloat(document.getElementById('rateC').value) || 0,
+
+            term: parseFloat(document.getElementById('termC').value) || 1
+
+        }
+
+    ];
+
+    
+
+    // Calculate for each loan
+
+    loans.forEach(loan => {
+
+        const monthlyRate = loan.rate / 100 / 12;
+
+        const totalPayments = loan.term * 12;
+
+        const monthlyPayment = loan.amount * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+
+        const totalInterest = (monthlyPayment * totalPayments) - loan.amount;
+
+        const totalCost = monthlyPayment * totalPayments;
+
+        
+
+        loan.monthlyPayment = monthlyPayment;
+
+        loan.totalInterest = totalInterest;
+
+        loan.totalCost = totalCost;
+
+    });
+
+    
+
+    // Sort by total cost
+
+    loans.sort((a, b) => a.totalCost - b.totalCost);
+
+    
+
+    // Display results
+
+    const tableBody = document.getElementById('comparisonTable');
+
+    tableBody.innerHTML = '';
+
+    
+
+    loans.forEach((loan, index) => {
+
+        const bestFor = index === 0 ? 'Lowest Cost' : index === 1 ? 'Middle Option' : 'Highest Cost';
+
+        const row = tableBody.insertRow();
+
+        row.innerHTML = `
+
+            <td><strong>Option ${loan.name}</strong></td>
+
+            <td class="text-primary fw-bold">$${loan.monthlyPayment.toFixed(2)}</td>
+
+            <td class="text-success">$${loan.totalInterest.toFixed(2)}</td>
+
+            <td class="fw-bold">$${loan.totalCost.toFixed(2)}</td>
+
+            <td><span class="badge bg-${index === 0 ? 'success' : index === 1 ? 'warning' : 'secondary'}">${bestFor}</span></td>
+
+        `;
+
+    });
+
+    
+
+    document.getElementById('comparisonResults').style.display = 'block';
+
+}
+
+
+
+function exportResults() {
+
+    const data = {
+
+        loanAmount: parseFloat(document.getElementById('loanAmount').value) || 0,
+
+        interestRate: parseFloat(document.getElementById('interestRate').value) || 0,
+
+        loanTerm: parseFloat(document.getElementById('loanTerm').value) || 1,
+
+        monthlyPayment: document.getElementById('monthlyPayment').textContent,
+
+        totalInterest: document.getElementById('totalInterest').textContent,
+
+        totalPayments: document.getElementById('totalPayments').textContent,
+
+        apr: document.getElementById('aprDisplay').textContent
+
+    };
+
+    
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+
+    a.href = url;
+
+    a.download = 'business-loan-analysis.json';
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+                                <table class="table table-sm">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>Option</th>
+
+                                            <th>Monthly Payment</th>
+
+                                            <th>Total Interest</th>
+
+                                            <th>Total Cost</th>
+
+                                            <th>Best For</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody id="comparisonTable">
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- How It Works -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="h3 fw-bold mb-3">How Loan Calculations Work</h2>
+
+            <p class="text-muted mb-0">Understand the formula behind loan payment calculations</p>
+
+        </div>
+
+        
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+
+                            <i class="fas fa-calculator fa-2x text-primary"></i>
+
+                        </div>
+
+                        <h5 class="fw-bold mb-3">Payment Formula</h5>
+
+                        <p class="text-muted mb-0">P = L[c(1 + c)^n]/[(1 + c)^n - 1] where P=payment, L=loan amount, c=monthly rate, n=total payments</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+
+                            <i class="fas fa-chart-line fa-2x text-success"></i>
+
+                        </div>
+
+                        <h5 class="fw-bold mb-3">Amortization</h5>
+
+                        <p class="text-muted mb-0">Early payments are mostly interest, later payments are mostly principal.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+
+                            <i class="fas fa-lightbulb fa-2x text-warning"></i>
+
+                        </div>
+
+                        <h5 class="fw-bold mb-3">Loan Insights</h5>
+
+                        <p class="text-muted mb-0">Use this calculator to compare loan options and understand total borrowing costs.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- Call to Action -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h3 class="fw-bold mb-4">Ready to Form Your LLC?</h3>
+
+            <p class="lead mb-4">Now that you know your loan costs, find the perfect LLC formation service for your business.</p>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+                <a href="/cities" class="btn btn-primary btn-lg">
+
+                    <i class="fas fa-city me-2"></i>Find Local Services
+
+                </a>
+
+                <a href="/calculator/break-even" class="btn btn-outline-primary btn-lg">
+
+                    <i class="fas fa-calculator me-2"></i>Break-Even Calculator
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+document.getElementById('loanForm').addEventListener('submit', function(e) {
+
+    e.preventDefault();
+
+    calculateLoan();
+
+});
+
+
+
+function calculateLoan() {
+
+    // Get form values
+
+    const loanAmount = parseFloat(document.getElementById('loanAmount').value) || 0;
+
+    const annualRate = parseFloat(document.getElementById('interestRate').value) || 0;
+
+    const loanTerm = parseFloat(document.getElementById('loanTerm').value) || 1;
+
+    const paymentFrequency = parseInt(document.getElementById('paymentFrequency').value) || 12;
+
+    const originationFee = parseFloat(document.getElementById('originationFee').value) || 0;
+
+    const monthlyFees = parseFloat(document.getElementById('monthlyFees').value) || 0;
+
+    
+
+    // Calculate monthly rate and total payments
+
+    const monthlyRate = annualRate / 100 / 12;
+
+    const totalPayments = loanTerm * 12;
+
+    
+
+    // Calculate monthly payment using loan payment formula
+
+    const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+
+    
+
+    // Calculate totals
+
+    const totalPayment = monthlyPayment * totalPayments;
+
+    const totalInterest = totalPayment - loanAmount;
+
+    const totalFees = (monthlyFees * totalPayments) + originationFee;
+
+    const totalCost = totalPayment + totalFees;
+
+    
+
+    // Calculate APR (simplified)
+
+    const apr = annualRate + (totalFees / loanAmount / loanTerm * 100);
+
+    
+
+    // Display results
+
+    document.getElementById('monthlyPayment').textContent = '$' + monthlyPayment.toFixed(2);
+
+    document.getElementById('totalInterest').textContent = '$' + totalInterest.toFixed(2);
+
+    document.getElementById('totalPayments').textContent = '$' + totalCost.toFixed(2);
+
+    document.getElementById('loanTermDisplay').textContent = loanTerm + ' year' + (loanTerm !== 1 ? 's' : '');
+
+    document.getElementById('aprDisplay').textContent = apr.toFixed(2) + '%';
+
+    
+
+    // Payment breakdown
+
+    document.getElementById('principalPayment').textContent = '$' + (loanAmount / totalPayments).toFixed(2);
+
+    document.getElementById('interestPayment').textContent = '$' + (totalInterest / totalPayments).toFixed(2);
+
+    document.getElementById('feesPayment').textContent = '$' + (totalFees / totalPayments).toFixed(2);
+
+    
+
+    // Show results
+
+    document.getElementById('results').style.display = 'block';
+
+    document.getElementById('noResults').style.display = 'none';
+
+    
+
+    // Generate amortization schedule
+
+    generateAmortizationSchedule(loanAmount, monthlyRate, totalPayments, monthlyPayment, monthlyFees);
+
+}
+
+
+
+function generateAmortizationSchedule(principal, monthlyRate, totalPayments, monthlyPayment, monthlyFees) {
+
+    const tableBody = document.getElementById('amortizationBody');
+
+    tableBody.innerHTML = '';
+
+    
+
+    let remainingBalance = principal;
+
+    
+
+    for (let i = 1; i <= Math.min(totalPayments, 12); i++) { // Show first 12 payments
+
+        const interestPayment = remainingBalance * monthlyRate;
+
+        const principalPayment = monthlyPayment - interestPayment;
+
+        remainingBalance -= principalPayment;
+
+        
+
+        const row = tableBody.insertRow();
+
+        row.innerHTML = `
+
+            <td>${i}</td>
+
+            <td>$${monthlyPayment.toFixed(2)}</td>
+
+            <td>$${principalPayment.toFixed(2)}</td>
+
+            <td>$${interestPayment.toFixed(2)}</td>
+
+            <td>$${monthlyFees.toFixed(2)}</td>
+
+            <td>$${Math.max(0, remainingBalance).toFixed(2)}</td>
+
+        `;
+
+    }
+
+    
+
+    if (totalPayments > 12) {
+
+        const row = tableBody.insertRow();
+
+        row.innerHTML = `
+
+            <td colspan="6" class="text-center text-muted">
+
+                <em>... and ${totalPayments - 12} more payments</em>
+
+            </td>
+
+        `;
+
+    }
+
+}
+
+
+
+function compareLoans() {
+
+    const loans = [
+
+        {
+
+            name: 'A',
+
+            amount: parseFloat(document.getElementById('loanA').value) || 0,
+
+            rate: parseFloat(document.getElementById('rateA').value) || 0,
+
+            term: parseFloat(document.getElementById('termA').value) || 1
+
+        },
+
+        {
+
+            name: 'B',
+
+            amount: parseFloat(document.getElementById('loanB').value) || 0,
+
+            rate: parseFloat(document.getElementById('rateB').value) || 0,
+
+            term: parseFloat(document.getElementById('termB').value) || 1
+
+        },
+
+        {
+
+            name: 'C',
+
+            amount: parseFloat(document.getElementById('loanC').value) || 0,
+
+            rate: parseFloat(document.getElementById('rateC').value) || 0,
+
+            term: parseFloat(document.getElementById('termC').value) || 1
+
+        }
+
+    ];
+
+    
+
+    // Calculate for each loan
+
+    loans.forEach(loan => {
+
+        const monthlyRate = loan.rate / 100 / 12;
+
+        const totalPayments = loan.term * 12;
+
+        const monthlyPayment = loan.amount * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+
+        const totalInterest = (monthlyPayment * totalPayments) - loan.amount;
+
+        const totalCost = monthlyPayment * totalPayments;
+
+        
+
+        loan.monthlyPayment = monthlyPayment;
+
+        loan.totalInterest = totalInterest;
+
+        loan.totalCost = totalCost;
+
+    });
+
+    
+
+    // Sort by total cost
+
+    loans.sort((a, b) => a.totalCost - b.totalCost);
+
+    
+
+    // Display results
+
+    const tableBody = document.getElementById('comparisonTable');
+
+    tableBody.innerHTML = '';
+
+    
+
+    loans.forEach((loan, index) => {
+
+        const bestFor = index === 0 ? 'Lowest Cost' : index === 1 ? 'Middle Option' : 'Highest Cost';
+
+        const row = tableBody.insertRow();
+
+        row.innerHTML = `
+
+            <td><strong>Option ${loan.name}</strong></td>
+
+            <td class="text-primary fw-bold">$${loan.monthlyPayment.toFixed(2)}</td>
+
+            <td class="text-success">$${loan.totalInterest.toFixed(2)}</td>
+
+            <td class="fw-bold">$${loan.totalCost.toFixed(2)}</td>
+
+            <td><span class="badge bg-${index === 0 ? 'success' : index === 1 ? 'warning' : 'secondary'}">${bestFor}</span></td>
+
+        `;
+
+    });
+
+    
+
+    document.getElementById('comparisonResults').style.display = 'block';
+
+}
+
+
+
+function exportResults() {
+
+    const data = {
+
+        loanAmount: parseFloat(document.getElementById('loanAmount').value) || 0,
+
+        interestRate: parseFloat(document.getElementById('interestRate').value) || 0,
+
+        loanTerm: parseFloat(document.getElementById('loanTerm').value) || 1,
+
+        monthlyPayment: document.getElementById('monthlyPayment').textContent,
+
+        totalInterest: document.getElementById('totalInterest').textContent,
+
+        totalPayments: document.getElementById('totalPayments').textContent,
+
+        apr: document.getElementById('aprDisplay').textContent
+
+    };
+
+    
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+
+    a.href = url;
+
+    a.download = 'business-loan-analysis.json';
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+
+

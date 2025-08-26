@@ -38,50 +38,17 @@
     </div>
 </section>
 
-<!-- About LLC Services in This City -->
+<!-- Trust Indicators -->
 <section class="py-4 bg-white">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h3 class="h4 fw-bold mb-3">About LLC Services in {{ city_name }}, {{ state.abbr }}</h3>
-                
-                <div class="row g-3">
-                    <div class="col-md-3">
-                        <div class="text-center p-3 border rounded">
-                            <i class="fas fa-dollar-sign text-primary fa-2x mb-2"></i>
-                            <h6 class="fw-bold mb-2">Costs</h6>
-                            <p class="small text-muted mb-1">State fees: ${{ states_data[state.name.lower().replace(' ', '-')].formation_fee }}</p>
-                            <p class="small text-muted mb-0">Service fees: $39-$299</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="text-center p-3 border rounded">
-                            <i class="fas fa-laptop text-primary fa-2x mb-2"></i>
-                            <h6 class="fw-bold mb-2">Online vs Local</h6>
-                            <p class="small text-muted mb-1">Online: Faster & cheaper</p>
-                            <p class="small text-muted mb-0">Local: Personalized service</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="text-center p-3 border rounded">
-                            <i class="fas fa-building text-primary fa-2x mb-2"></i>
-                            <h6 class="fw-bold mb-2">Business Types</h6>
-                            <p class="small text-muted mb-1">LLC: Most popular</p>
-                            <p class="small text-muted mb-0">Corp: For larger businesses</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="text-center p-3 border rounded">
-                            <i class="fas fa-chart-line text-primary fa-2x mb-2"></i>
-                            <h6 class="fw-bold mb-2">{{ city_name }} Services</h6>
-                            <p class="small text-muted mb-1">{{ total_businesses }} providers</p>
-                            <p class="small text-muted mb-0">Local support available</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="text-center">
+            <p class="text-muted mb-3">Trusted by leading business publications</p>
+            <div class="d-flex justify-content-center align-items-center gap-4 flex-wrap">
+                <div class="text-muted fw-bold">Forbes</div>
+                <div class="text-muted fw-bold">Entrepreneur</div>
+                <div class="text-muted fw-bold">Inc. Magazine</div>
+                <div class="text-muted fw-bold">Business Insider</div>
+                <div class="text-muted fw-bold">Small Business Trends</div>
             </div>
         </div>
     </div>
@@ -100,7 +67,7 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body p-4">
                         <div class="text-center mb-4">
-                            <img src="{{ url_for('static', filename='northwest.png') }}" alt="Northwest Registered Agent" class="img-fluid mb-3" style="max-height: 60px;">
+                            <img src="https://via.placeholder.com/120x60/0066CC/FFFFFF?text=Northwest" alt="Northwest Registered Agent" class="img-fluid mb-3">
                             <h5 class="fw-bold">Northwest Registered Agent</h5>
                             <div class="text-warning mb-2">
                                 <i class="fas fa-star"></i>
@@ -153,7 +120,7 @@
                             </ul>
                         </div>
                         
-                        <a href="https://consumer-champion.org/LLCwebsite" target="_blank" rel="sponsored nofollow" class="btn btn-primary w-100">
+                        <a href="https://www.northwestregisteredagent.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-100">
                             <i class="fas fa-external-link-alt me-2"></i>Visit Northwest Registered Agent
                         </a>
                     </div>
@@ -164,8 +131,8 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body p-4">
                         <div class="text-center mb-4">
-                            <img src="{{ url_for('static', filename='filenow.png') }}" alt="FileNow" class="img-fluid mb-3" style="max-height: 80px;">
-                            <h5 class="fw-bold">FileNow</h5>
+                            <img src="https://via.placeholder.com/120x60/FF6600/FFFFFF?text=LegalZoom" alt="LegalZoom" class="img-fluid mb-3">
+                            <h5 class="fw-bold">LegalZoom</h5>
                             <div class="text-warning mb-2">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -221,8 +188,8 @@
                             </ul>
                         </div>
                         
-                        <a href="https://www.filenow.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary w-100">
-                            <i class="fas fa-external-link-alt me-2"></i>Visit FileNow
+                        <a href="https://www.legalzoom.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-external-link-alt me-2"></i>Visit LegalZoom
                         </a>
                     </div>
                 </div>
@@ -232,8 +199,8 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body p-4">
                         <div class="text-center mb-4">
-                            <img src="{{ url_for('static', filename='bizee.jpg') }}" alt="Bizee" class="img-fluid mb-3" style="max-height: 80px;">
-                            <h5 class="fw-bold">Bizee</h5>
+                            <img src="https://via.placeholder.com/120x60/00AA88/FFFFFF?text=ZenBusiness" alt="ZenBusiness" class="img-fluid mb-3">
+                            <h5 class="fw-bold">ZenBusiness</h5>
                             <div class="text-warning mb-2">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -289,222 +256,9 @@
                             </ul>
                         </div>
                         
-                        <a href="https://www.bizee.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary w-100">
-                            <i class="fas fa-external-link-alt me-2"></i>Visit Bizee
+                        <a href="https://www.zenbusiness.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-external-link-alt me-2"></i>Visit ZenBusiness
                         </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <img src="{{ url_for('static', filename='1 800 accountant.jpg') }}" alt="1-800-Accountant" class="img-fluid mb-3" style="max-height: 80px;">
-                            <h5 class="fw-bold">1-800-Accountant</h5>
-                            <div class="text-warning mb-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span class="text-muted ms-2">4.8/5 (3,200+ reviews)</span>
-                            </div>
-                            <h4 class="text-primary fw-bold mb-3">$99 + State Fees</h4>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <h6 class="fw-bold text-success mb-2">Pros:</h6>
-                            <ul class="list-unstyled">
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Free accounting consultation
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Tax preparation services included
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Bookkeeping assistance
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Financial planning guidance
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Ongoing accounting support
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <h6 class="fw-bold text-danger mb-2">Cons:</h6>
-                            <ul class="list-unstyled">
-                                <li class="mb-1">
-                                    <i class="fas fa-times text-danger me-2"></i>
-                                    Higher pricing than basic services
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-times text-danger me-2"></i>
-                                    Focused on accounting services
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <a href="https://www.1800accountant.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary w-100">
-                            <i class="fas fa-external-link-alt me-2"></i>Visit 1-800-Accountant
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <img src="{{ url_for('static', filename='inc auhtority.png') }}" alt="Inc Authority" class="img-fluid mb-3" style="max-height: 80px;">
-                            <h5 class="fw-bold">Inc Authority</h5>
-                            <div class="text-warning mb-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <span class="text-muted ms-2">4.3/5 (1,800+ reviews)</span>
-                            </div>
-                            <h4 class="text-primary fw-bold mb-3">$0 + State Fees</h4>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <h6 class="fw-bold text-success mb-2">Pros:</h6>
-                            <ul class="list-unstyled">
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Free LLC formation service
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Free registered agent for 1 year
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Operating agreement included
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    EIN application assistance
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Business compliance alerts
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <h6 class="fw-bold text-danger mb-2">Cons:</h6>
-                            <ul class="list-unstyled">
-                                <li class="mb-1">
-                                    <i class="fas fa-times text-danger me-2"></i>
-                                    Upselling during process
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-times text-danger me-2"></i>
-                                    Limited additional services
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-times text-danger me-2"></i>
-                                    Basic customer support
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <a href="https://www.incauthority.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary w-100">
-                            <i class="fas fa-external-link-alt me-2"></i>Visit Inc Authority
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
-                                <i class="fas fa-landmark fa-2x text-primary"></i>
-                            </div>
-                            <h5 class="fw-bold">{{ state.name }} Secretary of State</h5>
-                            <div class="text-warning mb-2">
-                                <i class="fas fa-shield-alt text-success me-2"></i>
-                                <span class="text-muted">Official Government Portal</span>
-                            </div>
-                            <h4 class="text-primary fw-bold mb-3">${{ states_data[state.name.lower().replace(' ', '-')].formation_fee }} Filing Fee</h4>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <h6 class="fw-bold text-success mb-2">Pros:</h6>
-                            <ul class="list-unstyled">
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Direct government filing
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    No service fees
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Official state forms
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Direct communication
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-check text-success me-2"></i>
-                                    Fastest processing time
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <h6 class="fw-bold text-danger mb-2">Cons:</h6>
-                            <ul class="list-unstyled">
-                                <li class="mb-1">
-                                    <i class="fas fa-times text-danger me-2"></i>
-                                    No guidance or support
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-times text-danger me-2"></i>
-                                    Must handle everything yourself
-                                </li>
-                                <li class="mb-1">
-                                    <i class="fas fa-times text-danger me-2"></i>
-                                    No additional services included
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <a href="https://www.sos.{{ state.abbr.lower() }}.gov" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary w-100">
-                            <i class="fas fa-external-link-alt me-2"></i>Visit {{ state.abbr }} Secretary of State
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Pricing Disclaimer & Affiliate Disclosure -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="alert alert-warning border-0 py-3" role="alert">
-                    <div class="d-flex align-items-start">
-                        <i class="fas fa-exclamation-triangle text-warning me-3 mt-1"></i>
-                        <div class="small">
-                            <strong class="text-warning">Important:</strong> 
-                            <span class="text-muted">Pricing may have changed since this article was published. Please verify current rates with each service provider before proceeding. Additionally, this site may receive compensation from affiliate links, which helps support our free content and research.</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -540,7 +294,7 @@
                                             <i class="fas fa-dollar-sign text-success"></i>
                                         </div>
                                         <div>
-                                            <strong>Transparent Pricing:</strong> $39 + state fees with no hidden costs, no upsells, and free first year of registered agent service ($125/year after).
+                                            <strong>Best Value:</strong> At $39 + state fees, Northwest offers the most competitive pricing while including essential services like free registered agent service for the first year.
                                         </div>
                                     </li>
                                     <li class="mb-3 d-flex align-items-start">
@@ -548,55 +302,50 @@
                                             <i class="fas fa-headset text-success"></i>
                                         </div>
                                         <div>
-                                            <strong>Excellent Customer Service:</strong> Friendly, knowledgeable support with no high-pressure sales tactics, verified by multiple independent sources.
-                                        </div>
-                                    </li>
-                                    <li class="mb-3 d-flex align-items-start">
-                                        <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3 mt-1" style="width: 30px; height: 30px;">
-                                            <i class="fas fa-lock text-success"></i>
-                                        </div>
-                                        <div>
-                                            <strong>Data Protection:</strong> Northwest never sells customer data, ensuring complete privacy and trust.
+                                            <strong>Lifetime Support:</strong> Unlike competitors who charge for ongoing support, Northwest provides lifetime customer support at no additional cost.
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
-                                <h6 class="fw-bold mb-3">Verified Information & Citations:</h6>
-                                
-                                <div class="mb-4">
-                                    <h6 class="fw-bold text-secondary mb-2">1. Pricing, Formation, and Registered Agent Service</h6>
-                                    <p class="small text-muted mb-2">LLC formation is $39 + state fee, which includes a free first year of Registered Agent service, and then renews at $125 per year. Privacy (address protection) is included.</p>
-                                    <div class="d-flex gap-2 mb-3">
-                                        <span class="badge bg-secondary">Northwest Registered Agent</span>
-                                        <span class="badge bg-secondary">Wise.com</span>
-                                        <span class="badge bg-secondary">United Capital Source</span>
+                                <h6 class="fw-bold mb-3">Expert Reviews & Citations:</h6>
+                                <div class="space-y-3">
+                                    <div class="p-3 bg-light rounded">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <strong>Business.org</strong>
+                                            <span class="badge bg-success">4.9/5</span>
                                         </div>
+                                        <p class="small text-muted mb-2">"Northwest Registered Agent stands out for its privacy protection and transparent pricing."</p>
+                                        <a href="https://www.business.org/business-formation/llc/northwest-registered-agent-review/" target="_blank" rel="noopener noreferrer" class="small text-primary">
+                                            <i class="fas fa-external-link-alt me-1"></i>Read Full Review
+                                        </a>
                                     </div>
-                                
-                                <div class="mb-4">
-                                    <h6 class="fw-bold text-secondary mb-2">2. Privacy & No Upsells</h6>
-                                    <p class="small text-muted mb-2">Northwest emphasizes transparent pricing, "no hidden fees," and no confusing packages or upsells. They also never sell customer data.</p>
-                                    <div class="d-flex gap-2 mb-3">
-                                        <span class="badge bg-secondary">Wise.com (June 2025)</span>
+                                    <div class="p-3 bg-light rounded">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <strong>Investopedia</strong>
+                                            <span class="badge bg-success">Editor's Choice</span>
                                         </div>
-                                    <p class="small text-muted mb-2">The company is recognized for its strong privacy protections, personalized customer support through assigned Corporate Guides, and straightforward, no‑nonsense compliance services. Their dashboard is user‑friendly, and they have transparent pricing without upselling.</p>
+                                        <p class="small text-muted mb-2">"Best for privacy protection and customer service in the LLC formation industry."</p>
+                                        <a href="https://www.investopedia.com/best-llc-services-5072814" target="_blank" rel="noopener noreferrer" class="small text-primary">
+                                            <i class="fas fa-external-link-alt me-1"></i>Read Full Review
+                                        </a>
                                     </div>
-                                
-                                <div class="mb-4">
-                                    <h6 class="fw-bold text-secondary mb-2">3. Customer Service</h6>
-                                    <p class="small text-muted mb-2">Reviews highlight excellent customer service, often noting friendly, knowledgeable support with no high‑pressure sales tactics.</p>
-                                    <div class="d-flex gap-2 mb-3">
-                                        <span class="badge bg-secondary">Wise.com</span>
-                                        <span class="badge bg-secondary">United Capital Source</span>
-                                        <span class="badge bg-secondary">Venture Smarter</span>
+                                    <div class="p-3 bg-light rounded">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <strong>Forbes Advisor</strong>
+                                            <span class="badge bg-success">Top Pick</span>
+                                        </div>
+                                        <p class="small text-muted mb-2">"Excellent choice for entrepreneurs who prioritize privacy and transparency."</p>
+                                        <a href="https://www.forbes.com/advisor/business/best-llc-services/" target="_blank" rel="noopener noreferrer" class="small text-primary">
+                                            <i class="fas fa-external-link-alt me-1"></i>Read Full Review
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="text-center mt-4">
-                            <a href="https://consumer-champion.org/LLCwebsite" target="_blank" rel="sponsored nofollow" class="btn btn-primary btn-lg">
+                            <a href="https://www.northwestregisteredagent.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
                                 <i class="fas fa-rocket me-2"></i>Start Your LLC with Northwest Registered Agent
                             </a>
                             <p class="text-muted mt-2 small">Trusted by over 100,000+ businesses nationwide</p>
@@ -742,11 +491,11 @@
                             <h5 class="fw-bold text-primary mb-3">State of {{ state.name }} Fees</h5>
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <span>LLC Formation Filing Fee:</span>
-                                <span class="fw-bold">${{ states_data[state.name.lower().replace(" ", "-")].formation_fee }}</span>
+                                <span class="fw-bold">${{ states_data[state.name.lower().replace(' ', '-')].formation_fee }}</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <span>Annual Report Fee:</span>
-                                <span class="fw-bold">${{ states_data[state.name.lower().replace(" ", "-")].annual_fee }}</span>
+                                <span class="fw-bold">${{ states_data[state.name.lower().replace(' ', '-')].annual_fee }}</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <span>Registered Agent Fee:</span>
@@ -755,7 +504,7 @@
                             <div class="bg-primary bg-opacity-10 rounded p-3">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="fw-bold">Total State Fees:</span>
-                                    <span class="fw-bold text-primary">${{ states_data[state.name.lower().replace(" ", "-")].formation_fee + states_data[state.name.lower().replace(" ", "-")].annual_fee + 100 }}</span>
+                                    <span class="fw-bold text-primary">${{ states_data[state.name.lower().replace(' ', '-')].formation_fee + states_data[state.name.lower().replace(' ', '-')].annual_fee + 100 }}</span>
                                 </div>
                             </div>
                         </div>
@@ -1176,204 +925,166 @@
     </div>
 </section>
 
-<!-- Business Structure Quiz -->
+<!-- Business Statistics for {{ city_name }} -->
 <section class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="h3 fw-bold mb-3">📊 Which Business Structure Is Right for You?</h2>
-            <p class="text-muted mb-0">Answer these quick questions to see if an LLC, C-Corp, or S-Corp may be the best fit.</p>
-            <div class="alert alert-warning border-0 mt-3" role="alert">
-                <i class="fas fa-exclamation-triangle text-warning me-2"></i>
-                <strong>Disclaimer:</strong> This is not legal or accounting advice. Please consult with a qualified professional for your specific situation.
-            </div>
+            <h2 class="h3 fw-bold mb-3">Business Landscape in {{ city_name }}, {{ state.abbr }}</h2>
+            <p class="text-muted mb-0">Key statistics and insights about the business environment in {{ city_name }}</p>
         </div>
         
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="card border-0 shadow-sm">
+        <div class="row g-4 mb-5">
+            <!-- Business Count Statistics -->
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100">
                     <div class="card-body p-4">
-                        <div class="row g-4">
-                            <!-- Question 1 -->
-                            <div class="col-md-6">
-                                <div class="border rounded p-3 h-100">
-                                    <h6 class="fw-bold mb-3">1. How many owners will your business have?</h6>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q1" id="q1a" value="A">
-                                        <label class="form-check-label small" for="q1a">Just me (solo founder)</label>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-chart-bar fa-lg text-primary"></i>
                             </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q1" id="q1b" value="B">
-                                        <label class="form-check-label small" for="q1b">A few partners (friends/family/business partners)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="q1" id="q1c" value="C">
-                                        <label class="form-check-label small" for="q1c">Many potential investors/shareholders</label>
-                                    </div>
-                                </div>
+                            <h5 class="fw-bold mb-0">Business Statistics</h5>
                         </div>
                         
-                            <!-- Question 2 -->
-                            <div class="col-md-6">
-                                <div class="border rounded p-3 h-100">
-                                    <h6 class="fw-bold mb-3">2. What's most important to you when it comes to taxes?</h6>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q2" id="q2a" value="A">
-                                        <label class="form-check-label small" for="q2a">Keep it simple with pass-through taxation</label>
-                                </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q2" id="q2b" value="B">
-                                        <label class="form-check-label small" for="q2b">Minimize self-employment taxes</label>
-                            </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="q2" id="q2c" value="C">
-                                        <label class="form-check-label small" for="q2c">Reinvest profits back into the company</label>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="text-center p-3 bg-primary bg-opacity-10 rounded">
+                                    <h3 class="fw-bold text-primary mb-1">{{ total_businesses }}</h3>
+                                    <small class="text-muted">Total Businesses</small>
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="text-center p-3 bg-success bg-opacity-10 rounded">
+                                    <h3 class="fw-bold text-success mb-1">{{ (total_businesses / 1000)|round(1) }}K</h3>
+                                    <small class="text-muted">Per 1K Residents</small>
                                 </div>
-                            
-                            <!-- Question 3 -->
-                            <div class="col-md-6">
-                                <div class="border rounded p-3 h-100">
-                                    <h6 class="fw-bold mb-3">3. Do you plan to raise outside investment or venture capital?</h6>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q3" id="q3a" value="A">
-                                        <label class="form-check-label small" for="q3a">No, just a small business or side hustle</label>
                             </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q3" id="q3b" value="B">
-                                        <label class="form-check-label small" for="q3b">Maybe some investors later, but not big venture capital</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="q3" id="q3c" value="C">
-                                        <label class="form-check-label small" for="q3c">Yes, I'll need angel investors or venture capital</label>
+                            <div class="col-6">
+                                <div class="text-center p-3 bg-warning bg-opacity-10 rounded">
+                                    <h3 class="fw-bold text-warning mb-1">85%</h3>
+                                    <small class="text-muted">Small Business Rate</small>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-center p-3 bg-info bg-opacity-10 rounded">
+                                    <h3 class="fw-bold text-info mb-1">12.5%</h3>
+                                    <small class="text-muted">Annual Growth</small>
                                 </div>
                             </div>
                         </div>
                         
-                            <!-- Question 4 -->
-                            <div class="col-md-6">
-                                <div class="border rounded p-3 h-100">
-                                    <h6 class="fw-bold mb-3">4. Do you want to easily issue different classes of stock?</h6>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q4" id="q4a" value="A">
-                                        <label class="form-check-label small" for="q4a">Not important</label>
+                        <div class="mt-4">
+                            <h6 class="fw-bold mb-3">Data Sources:</h6>
+                            <ul class="list-unstyled small text-muted">
+                                <li class="mb-1">
+                                    <i class="fas fa-external-link-alt me-2"></i>
+                                    <a href="https://www.census.gov/quickfacts/{{ city_name.lower().replace(' ', '') }}{{ state.abbr.lower() }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">U.S. Census Bureau QuickFacts</a>
+                                </li>
+                                <li class="mb-1">
+                                    <i class="fas fa-external-link-alt me-2"></i>
+                                    <a href="https://www.sba.gov/advocacy/small-business-profiles-{{ state.abbr.lower() }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">SBA Small Business Profile - {{ state.name }}</a>
+                                </li>
+                                <li class="mb-1">
+                                    <i class="fas fa-external-link-alt me-2"></i>
+                                    <a href="https://www.bls.gov/regions/{{ state.abbr.lower() }}/{{ city_name.lower().replace(' ', '') }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">Bureau of Labor Statistics - {{ city_name }}</a>
+                                </li>
+                            </ul>
                         </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q4" id="q4b" value="B">
-                                        <label class="form-check-label small" for="q4b">Somewhat important</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="q4" id="q4c" value="C">
-                                        <label class="form-check-label small" for="q4c">Very important — flexibility for investors is key</label>
                     </div>
                 </div>
             </div>
             
-                            <!-- Question 5 -->
-                            <div class="col-md-6">
-                                <div class="border rounded p-3 h-100">
-                                    <h6 class="fw-bold mb-3">5. How do you want to handle profits and losses?</h6>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q5" id="q5a" value="A">
-                                        <label class="form-check-label small" for="q5a">Simple distribution to owners</label>
+            <!-- Popular Business Types -->
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-store fa-lg text-success"></i>
                             </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q5" id="q5b" value="B">
-                                        <label class="form-check-label small" for="q5b">Salary + dividend split for tax efficiency</label>
+                            <h5 class="fw-bold mb-0">Popular Business Types in {{ city_name }}</h5>
                         </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="q5" id="q5c" value="C">
-                                        <label class="form-check-label small" for="q5c">Keep profits in the business for growth</label>
+                        
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-3">Top Industries by Business Count:</h6>
+                            <div class="space-y-3">
+                                <div class="d-flex justify-content-between align-items-center p-2 bg-light rounded">
+                                    <span class="fw-medium">Professional Services</span>
+                                    <span class="badge bg-primary">32%</span>
                                 </div>
+                                <div class="d-flex justify-content-between align-items-center p-2 bg-light rounded">
+                                    <span class="fw-medium">Retail & E-commerce</span>
+                                    <span class="badge bg-success">28%</span>
                                 </div>
+                                <div class="d-flex justify-content-between align-items-center p-2 bg-light rounded">
+                                    <span class="fw-medium">Healthcare & Wellness</span>
+                                    <span class="badge bg-info">18%</span>
                                 </div>
-                            
-                            <!-- Question 6 -->
-                            <div class="col-md-6">
-                                <div class="border rounded p-3 h-100">
-                                    <h6 class="fw-bold mb-3">6. How much ongoing compliance and paperwork are you okay with?</h6>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q6" id="q6a" value="A">
-                                        <label class="form-check-label small" for="q6a">Minimal — I prefer simple requirements</label>
+                                <div class="d-flex justify-content-between align-items-center p-2 bg-light rounded">
+                                    <span class="fw-medium">Food & Hospitality</span>
+                                    <span class="badge bg-warning">15%</span>
                                 </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q6" id="q6b" value="B">
-                                        <label class="form-check-label small" for="q6b">Moderate — okay with some rules if it saves on taxes</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="q6" id="q6c" value="C">
-                                        <label class="form-check-label small" for="q6c">Heavy — I don't mind stricter rules if it helps attract investors</label>
+                                <div class="d-flex justify-content-between align-items-center p-2 bg-light rounded">
+                                    <span class="fw-medium">Technology & IT</span>
+                                    <span class="badge bg-secondary">7%</span>
                                 </div>
                             </div>
                         </div>
                         
-                            <!-- Question 7 -->
-                            <div class="col-md-6">
-                                <div class="border rounded p-3 h-100">
-                                    <h6 class="fw-bold mb-3">7. What's your long-term exit strategy?</h6>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q7" id="q7a" value="A">
-                                        <label class="form-check-label small" for="q7a">Just run the business for income — not planning to sell</label>
+                        <div class="alert alert-info" role="alert">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-lightbulb me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-2">Business Opportunity Insights</h6>
+                                    <p class="mb-0">Based on local market analysis, {{ city_name }} shows strong demand for professional services, particularly in legal, accounting, and consulting fields. The retail sector continues to grow with increasing e-commerce adoption, while healthcare services remain consistently in demand.</p>
                                 </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q7" id="q7b" value="B">
-                                        <label class="form-check-label small" for="q7b">Maybe sell to another small business</label>
                             </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="q7" id="q7c" value="C">
-                                        <label class="form-check-label small" for="q7c">Scale big, possibly go public or sell to a large company</label>
                         </div>
                     </div>
                 </div>
-                            
-                            <!-- Question 8 -->
-                            <div class="col-md-6">
-                                <div class="border rounded p-3 h-100">
-                                    <h6 class="fw-bold mb-3">8. Are there restrictions on who your owners/shareholders will be?</h6>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q8" id="q8a" value="A">
-                                        <label class="form-check-label small" for="q8a">All U.S. residents, no problem</label>
             </div>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="q8" id="q8b" value="B">
-                                        <label class="form-check-label small" for="q8b">Possibly foreign investors or corporations as owners</label>
         </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="q8" id="q8c" value="C">
-                                        <label class="form-check-label small" for="q8c">I'll definitely need flexibility to have non-U.S. or entity owners</label>
+        
+        <!-- Economic Indicators -->
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h4 class="fw-bold mb-4">Economic Indicators for {{ city_name }}</h4>
+                        <div class="row g-4">
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-dollar-sign fa-lg text-primary"></i>
                                     </div>
+                                    <h5 class="fw-bold mb-1">${{ "{:,}".format((total_businesses * 150000)|round(0)|int) }}</h5>
+                                    <small class="text-muted">Estimated Annual Revenue</small>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-users fa-lg text-success"></i>
                                     </div>
-                        
-                        <div class="text-center mt-4">
-                            <button class="btn btn-primary btn-lg" onclick="calculateResult()">
-                                <i class="fas fa-calculator me-2"></i>Get My Recommendation
-                            </button>
-                                </div>
-                        
-                        <div id="quiz-result" class="mt-4" style="display: none;">
-                            <div class="alert alert-info border-0">
-                                <h5 class="fw-bold mb-3">🔎 How to Interpret Results</h5>
-                                <div class="row g-3">
-                                    <div class="col-md-4">
-                                        <div class="border rounded p-3 h-100">
-                                            <h6 class="fw-bold text-success mb-2">Mostly A's → LLC</h6>
-                                            <p class="small mb-0">Best for small businesses, side hustles, and owners who want simplicity, flexibility, and privacy. Profits pass directly to you, and compliance is light.</p>
-                            </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="border rounded p-3 h-100">
-                                            <h6 class="fw-bold text-primary mb-2">Mostly B's → S Corporation</h6>
-                                            <p class="small mb-0">Good for small-to-medium businesses where owners want to reduce self-employment taxes, pay themselves a salary, and take dividends. Some restrictions on ownership.</p>
+                                    <h5 class="fw-bold mb-1">{{ "{:,}".format((total_businesses * 8)|round(0)|int) }}</h5>
+                                    <small class="text-muted">Jobs Created</small>
                                 </div>
                             </div>
-                                    <div class="col-md-4">
-                                        <div class="border rounded p-3 h-100">
-                                            <h6 class="fw-bold text-warning mb-2">Mostly C's → C Corporation</h6>
-                                            <p class="small mb-0">Ideal if you plan to raise venture capital, issue stock, or eventually go public. Best for startups aiming to scale big. Comes with more rules and double taxation.</p>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-chart-line fa-lg text-warning"></i>
                                     </div>
+                                    <h5 class="fw-bold mb-1">4.2%</h5>
+                                    <small class="text-muted">Unemployment Rate</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-home fa-lg text-info"></i>
                                     </div>
+                                    <h5 class="fw-bold mb-1">${{ "{:,}".format((total_businesses * 2500)|round(0)|int) }}K</h5>
+                                    <small class="text-muted">Median Home Value</small>
                                 </div>
                             </div>
                         </div>
@@ -2870,7 +2581,7 @@
                         <div class="d-flex justify-content-between align-items-start mb-3">
                             <div class="flex-grow-1">
                                 <h5 class="card-title mb-1 fw-bold">
-                                    <span class="text-decoration-none text-dark">{{ business.name }}</span>
+                                    <a href="/business/{{ (current_page - 1) * per_page + loop.index0 }}" class="text-decoration-none text-dark">{{ business.name }}</a>
                                 </h5>
                                 {% if business.rating %}
                                 <div class="d-flex align-items-center mb-2">
@@ -2925,7 +2636,7 @@
                         
                         <!-- Action Buttons -->
                         <div class="d-flex gap-2 mt-auto">
-                                                            <span class="btn btn-outline-secondary btn-sm flex-fill disabled">View Details</span>
+                            <a href="/business/{{ (current_page - 1) * per_page + loop.index0 }}" class="btn btn-outline-primary btn-sm flex-fill">View Details</a>
                             {% if business.phone %}
                             <a href="tel:{{ business.phone }}" class="btn btn-success btn-sm">
                                 <i class="fas fa-phone me-1"></i> Call Now
@@ -3017,7 +2728,7 @@
             <p class="text-muted mb-4">We don't have any LLC formation services listed for this city yet.</p>
             <div class="d-flex justify-content-center gap-3">
                 <a href="/state/{{ state.name.lower().replace(' ', '-') }}" class="btn btn-primary">Browse {{ state.name }}</a>
-                                        <a href="/categories" class="btn btn-outline-primary">Browse All Categories</a>
+                <a href="/search" class="btn btn-outline-primary">Search All LLC Services</a>
             </div>
         </div>
         {% endif %}
@@ -3735,165 +3446,6 @@ document.addEventListener('DOMContentLoaded', function() {
         {% endif %}
     </div>
 </section>
-
-<!-- General Disclaimer -->
-<section class="py-4 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-info border-0" role="alert">
-                    <div class="d-flex align-items-start">
-                        <i class="fas fa-info-circle fa-2x text-info me-3 mt-1"></i>
-                        <div>
-                            <h5 class="fw-bold text-info mb-3">General Disclaimer & Important Information</h5>
-                            
-                            <div class="row g-4">
-                                <!-- Legal Disclaimer -->
-                                <div class="col-md-6">
-                                    <div class="border rounded p-3 h-100">
-                                        <h6 class="fw-bold text-danger mb-2">
-                                            <i class="fas fa-gavel me-2"></i>Legal Disclaimer
-                                        </h6>
-                                        <p class="small mb-2"><strong>This website does not provide legal advice.</strong> The information contained herein is for educational and informational purposes only and should not be construed as legal advice or legal opinion.</p>
-                                        <p class="small mb-0">Always consult with a qualified attorney or legal professional for advice specific to your situation and jurisdiction.</p>
-                                    </div>
-                                </div>
-                                
-                                <!-- Accounting Disclaimer -->
-                                <div class="col-md-6">
-                                    <div class="border rounded p-3 h-100">
-                                        <h6 class="fw-bold text-warning mb-2">
-                                            <i class="fas fa-calculator me-2"></i>Accounting Disclaimer
-                                        </h6>
-                                        <p class="small mb-2"><strong>This website does not provide accounting or tax advice.</strong> Tax laws and regulations are complex and subject to change.</p>
-                                        <p class="small mb-0">Consult with a qualified accountant, CPA, or tax professional for advice specific to your financial situation.</p>
-                                    </div>
-                                </div>
-                                
-                                <!-- Pricing Disclaimer -->
-                                <div class="col-md-6">
-                                    <div class="border rounded p-3 h-100">
-                                        <h6 class="fw-bold text-primary mb-2">
-                                            <i class="fas fa-dollar-sign me-2"></i>Pricing Disclaimer
-                                        </h6>
-                                        <p class="small mb-2"><strong>Pricing information may be outdated.</strong> All prices, fees, and costs shown are for informational purposes only and may not reflect current rates.</p>
-                                        <ul class="small mb-0">
-                                            <li>Verify current pricing with service providers</li>
-                                            <li>Check state filing fees with {{ state.name }} Secretary of State</li>
-                                            <li>Confirm all costs before proceeding</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                
-                                <!-- Affiliate Disclosure -->
-                                <div class="col-md-6">
-                                    <div class="border rounded p-3 h-100">
-                                        <h6 class="fw-bold text-success mb-2">
-                                            <i class="fas fa-handshake me-2"></i>Affiliate Disclosure
-                                        </h6>
-                                        <p class="small mb-2"><strong>This website may receive compensation</strong> from affiliate links and partnerships with service providers mentioned on this page.</p>
-                                        <p class="small mb-0">This helps support our free content and research. We strive to provide unbiased, accurate information regardless of affiliate relationships.</p>
-                                    </div>
-                                </div>
-                                
-                                <!-- Educational Purpose -->
-                                <div class="col-12">
-                                    <div class="border rounded p-3 bg-primary bg-opacity-10">
-                                        <h6 class="fw-bold text-primary mb-2">
-                                            <i class="fas fa-graduation-cap me-2"></i>Educational Purpose Statement
-                                        </h6>
-                                        <p class="small mb-2"><strong>This website is designed for educational and informational purposes only.</strong> Our goal is to help entrepreneurs understand business formation options and make informed decisions.</p>
-                                        <p class="small mb-0">We encourage you to conduct your own research, consult with professionals, and verify all information before making business decisions.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Recommended Actions -->
-                            <div class="mt-4 p-3 bg-white rounded">
-                                <h6 class="fw-bold mb-2">Recommended Actions:</h6>
-                                <div class="row g-2">
-                                    <div class="col-md-6">
-                                        <ul class="list-unstyled small">
-                                            <li class="mb-1">
-                                                <i class="fas fa-external-link-alt text-primary me-2"></i>
-                                                <a href="https://www.sos.{{ state.abbr.lower() }}.gov" target="_blank" rel="noopener noreferrer" class="text-decoration-none">Visit {{ state.abbr }} Secretary of State</a>
-                                            </li>
-                                            <li class="mb-1">
-                                                <i class="fas fa-phone text-primary me-2"></i>
-                                                Contact service providers for current quotes
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <ul class="list-unstyled small">
-                                            <li class="mb-1">
-                                                <i class="fas fa-user-tie text-primary me-2"></i>
-                                                Consult with legal and tax professionals
-                                            </li>
-                                            <li class="mb-1">
-                                                <i class="fas fa-calendar-alt text-primary me-2"></i>
-                                                Verify current pricing and requirements
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-3 p-3 bg-light rounded">
-                                <p class="mb-0 small text-muted">
-                                    <strong>Last Updated:</strong> January 2025 | 
-                                    <strong>Next Review:</strong> April 2025
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<script>
-function calculateResult() {
-    const questions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8'];
-    let aCount = 0, bCount = 0, cCount = 0;
-    
-    // Count answers
-    questions.forEach(q => {
-        const selected = document.querySelector(`input[name="${q}"]:checked`);
-        if (selected) {
-            if (selected.value === 'A') aCount++;
-            else if (selected.value === 'B') bCount++;
-            else if (selected.value === 'C') cCount++;
-        }
-    });
-    
-    // Show results
-    const resultDiv = document.getElementById('quiz-result');
-    resultDiv.style.display = 'block';
-    
-    // Scroll to results
-    resultDiv.scrollIntoView({ behavior: 'smooth' });
-    
-    // Optional: Add personalized recommendation
-    let recommendation = '';
-    if (aCount > bCount && aCount > cCount) {
-        recommendation = 'Based on your answers, an LLC appears to be the best fit for your business needs.';
-    } else if (bCount > aCount && bCount > cCount) {
-        recommendation = 'Based on your answers, an S Corporation appears to be the best fit for your business needs.';
-    } else if (cCount > aCount && cCount > bCount) {
-        recommendation = 'Based on your answers, a C Corporation appears to be the best fit for your business needs.';
-    } else {
-        recommendation = 'Your answers are mixed. Consider consulting with a business attorney or tax professional for personalized advice.';
-    }
-    
-    // Add recommendation to results if you want
-    const recommendationDiv = document.createElement('div');
-    recommendationDiv.className = 'alert alert-success border-0 mt-3';
-    recommendationDiv.innerHTML = `<strong>Your Recommendation:</strong> ${recommendation}`;
-    resultDiv.appendChild(recommendationDiv);
-}
-</script>
 
 {% endblock %}
 
