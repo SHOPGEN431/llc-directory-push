@@ -650,10 +650,7 @@ def sitemap():
     for page in category_pages:
         sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}{page["url"]}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>{page["changefreq"]}</changefreq>\n    <priority>{page["priority"]}</priority>\n  </url>\n'
     
-    # Add business detail pages (limited to first 1000 for performance)
-    if llc_data is not None:
-        for idx in range(min(len(llc_data), 1000)):
-            sitemap += f'  <url>\n    <loc>{request.host_url.rstrip("/")}/business/{idx}</loc>\n    <lastmod>{datetime.now().strftime("%Y-%m-%d")}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>\n'
+
     
     sitemap += '</urlset>'
     
