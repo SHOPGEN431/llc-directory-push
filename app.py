@@ -94,38 +94,17 @@ states_data = {
     'wyoming': {'name': 'Wyoming', 'abbr': 'WY', 'formation_fee': 100, 'annual_fee': 50}
 }
 
-def load_llc_data(csv_file='C:\\llc-formation-website\\LLC Data.csv'):
+def load_llc_data(csv_file=None):
     """Load LLC data from CSV file"""
     global llc_data
     try:
-        if os.path.exists(csv_file):
-            llc_data = pd.read_csv(csv_file)
-            # Clean and process data
-            llc_data = llc_data.fillna('')
-            # Filter for business data (remove rows with empty business names)
-            llc_data = llc_data[llc_data['name'].notna() & (llc_data['name'] != '')]
-            print(f"Loaded {len(llc_data)} business records")
-            
-            # Debug: Show sample of city, postal_code, and state data
-            print("Sample city/postal_code/state data:")
-            if 'postal_code' in llc_data.columns:
-                sample_data = llc_data[['name', 'city', 'postal_code', 'state']].head(10)
-            else:
-                sample_data = llc_data[['name', 'city', 'state']].head(10)
-            print(sample_data)
-            
-            # Check for unique cities and states
-            print(f"Unique cities: {llc_data['city'].nunique()}")
-            print(f"Unique states: {llc_data['state'].nunique()}")
-            if 'postal_code' in llc_data.columns:
-                print(f"Unique postal codes: {llc_data['postal_code'].nunique()}")
-            
-            return True
-        else:
-            print(f"CSV file not found: {csv_file}")
-            return False
+        # For Vercel deployment, we'll work without CSV data for now
+        # You can add the CSV file later or use a database
+        print("Running without CSV data for Vercel deployment")
+        llc_data = None
+        return True
     except Exception as e:
-        print(f"Error loading CSV data: {e}")
+        print(f"Error loading data: {e}")
         return False
 
 def generate_seo_url(text):
@@ -850,3 +829,6 @@ if __name__ == '__main__':
     # Load data on startup
     load_llc_data()
     app.run(debug=True, host='0.0.0.0', port=5000)
+
+# Vercel deployment
+app.debug = False
